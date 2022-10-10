@@ -5,6 +5,7 @@ import {Form, Button, Card, Alert} from 'react-bootstrap'
 import __Form from '../components/form';
 import { useAuth } from '../contexts/AuthContext'
 import {auth} from '../firebase'; 
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Signin() {
 const emailRef = useRef()
@@ -13,6 +14,7 @@ const passwordConfirmRef = useRef()
 const { signup, currentUser } = useAuth(); 
 const [err, setErr] = useState("")
 const [loading, setLoading] = useState(false)
+const history = useNavigate(); 
 
 async function handleSubmit (e) { 
     e.preventDefault(); 
@@ -24,7 +26,10 @@ async function handleSubmit (e) {
         setErr('')
         setLoading(true)
         await signup(emailRef.current.value, passwordRef.current.value)
-    } catch {
+        history("/referral")
+        
+    } catch (err) {
+        console.log(err)
         setErr('Failed to create an account.')
     }
     setLoading(false)
@@ -63,7 +68,7 @@ async function handleSubmit (e) {
             </Card.Body>
         </Card>
         <div className="w-100 text-center mt-2">
-            Already have an account? Log In
+            Already have an account? <Link to="/signin">Log In</Link> 
         </div>
 
 
