@@ -1,27 +1,45 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 
 import Navbar from '../components/navbar';
-import {Form, Button, Card} from 'react-bootstrap'
+import {Form, Button, Card, Alert} from 'react-bootstrap'
 import __Form from '../components/form';
 import { useAuth } from '../contexts/AuthContext'
+import {auth} from '../firebase'; 
+
 export default function Signin() {
 const emailRef = useRef()
 const passwordRef = useRef()
 const passwordConfirmRef = useRef()
-const { signup } = useAuth(); 
+const { signup, currentUser } = useAuth(); 
+const [err, setErr] = useState("")
+const [loading, setLoading] = useState(false)
 
-function handleSubmit (e) { 
+async function handleSubmit (e) { 
     e.preventDefault(); 
-
-    signup(emailRef.current.value, passwordRef.current.value)
+     
+    if (passwordRef.current.value !== passwordConfirmRef.current.value){
+        return setErr("Passwords do not match.")
+    }
+    try{
+        setErr('')
+        setLoading(true)
+        await signup(emailRef.current.value, passwordRef.current.value)
+    } catch {
+        setErr('Failed to create an account.')
+    }
+    setLoading(false)
 }
+
+
+
   return (
     <div>
         <Navbar signedIn={false} />
         <Card>
             <Card.Body>
                 <h2 className = "text-center mb-4">Sign Up</h2>
-                <Form>
+                {err && <Alert variant="danger">{err}</Alert>}
+                <Form onSubmit={handleSubmit}>
                     <Form.Group id="email">
                         <Form.Label>Email</Form.Label>
                         <Form.Control type="email" ref={emailRef} required/>
@@ -39,7 +57,7 @@ function handleSubmit (e) {
                     </Form.Group>
 
 
-<Button className="w-100 secondary mt-4" type="submit">Sign Up</Button>
+<Button className="w-100 secondary mt-4" type="submit" disabled={loading}>Sign Up</Button>
 
                 </Form>
             </Card.Body>
