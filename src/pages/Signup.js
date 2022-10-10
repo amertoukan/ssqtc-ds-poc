@@ -1,10 +1,10 @@
 import React from 'react'
 import Navbar from '../components/navbar';
-import backgroundLogo from '../pics/SSQTC.jpeg'
+import Signup_Form from '../components/signup'
 export default function Signup() {
   return (
     <div>
-        <Navbar/>
-        <img src={backgroundLogo} className="img"/></div>
+        <Navbar signedIn={false}/>
+        <Signup_Form/></div>
   )
 }

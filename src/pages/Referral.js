@@ -4,7 +4,7 @@ import backgroundLogo from '../pics/SSQTC.jpeg'
 export default function Home() {
   return (
     <div>
-        <Navbar/>
+        <Navbar signedIn={false}/>
         <img src={backgroundLogo} className="img"/></div>
   )
 }
