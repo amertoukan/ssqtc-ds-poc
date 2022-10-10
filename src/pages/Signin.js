@@ -1,13 +1,10 @@
 import React from 'react'
-
 import Navbar from '../components/navbar';
-import __Form from '../components/form';
-
+import Signup_Form from '../components/signup'
 export default function Signin() {
-
   return (
     <div>
         <Navbar signedIn={false}/>
-        <__Form /></div>
+        <Signup_Form/></div>
   )
 }

@@ -1,10 +1,47 @@
-import React from 'react'
+import React, { useRef } from 'react'
+
 import Navbar from '../components/navbar';
-import Signup_Form from '../components/signup'
-export default function Signup() {
+import {Form, Button, Card} from 'react-bootstrap'
+import __Form from '../components/form';
+
+
+export default function Signin() {
+const emailRef = useRef()
+const passwordRef = useRef()
+const passwordConfirmRef = useRef()
   return (
     <div>
-        <Navbar signedIn={false}/>
-        <Signup_Form/></div>
+
+        <Card>
+            <Card.Body>
+                <h2 className = "text-center mb-4">Sign Up</h2>
+                <Form>
+                    <Form.Group id="email">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control type="email" ref={emailRef} required/>
+                    </Form.Group>
+
+                    <Form.Group id="password">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" ref={passwordRef} required/>
+                    </Form.Group>
+
+
+                    <Form.Group id="password-confirm">
+                        <Form.Label>Confirm Password</Form.Label>
+                        <Form.Control type="password" ref={passwordConfirmRef} required/>
+                    </Form.Group>
+
+
+<Button className="w-100 secondary mt-4" type="submit">Sign Up</Button>
+
+                </Form>
+            </Card.Body>
+        </Card>
+        <div className="w-100 text-center mt-2">
+            Already have an account? Log In
+        </div>
+
+    </div>
   )
 }
