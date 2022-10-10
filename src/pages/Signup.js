@@ -3,15 +3,15 @@ import React, { useRef } from 'react'
 import Navbar from '../components/navbar';
 import {Form, Button, Card} from 'react-bootstrap'
 import __Form from '../components/form';
-
-
+import { useAuth } from '../contexts/AuthContext'
 export default function Signin() {
 const emailRef = useRef()
 const passwordRef = useRef()
 const passwordConfirmRef = useRef()
+
   return (
     <div>
-
+        <Navbar signedIn={false} />
         <Card>
             <Card.Body>
                 <h2 className = "text-center mb-4">Sign Up</h2>
@@ -41,6 +41,7 @@ const passwordConfirmRef = useRef()
         <div className="w-100 text-center mt-2">
             Already have an account? Log In
         </div>
+
 
     </div>
   )
