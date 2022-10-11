@@ -4,7 +4,7 @@ import Navbar from '../components/navbar';
 import {Form, Button, Card, Alert} from 'react-bootstrap'
 import __Form from '../components/form';
 import { useAuth } from '../contexts/AuthContext'
-import {auth} from '../firebase'; 
+
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Signin() {
