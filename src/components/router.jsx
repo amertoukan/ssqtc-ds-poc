@@ -10,6 +10,7 @@ import Store from '../pages/Purchase';
 import Referral from '../pages/Referral';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
+import Settings from '../pages/Settings';
 import { AuthProvider } from '../contexts/AuthContext'; 
 
 export default function __Navbar(){
@@ -23,6 +24,7 @@ return(
             <Route path="/referral" element={<Referral/>}/>
             <Route path="/signin" element={<Signin/>}/>
             <Route path="/signup" element={<Signup/>}/>
+            <Route path="/settings" element={<Settings/>}/>
         </Routes>
         </AuthProvider>
      
