@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../components/navbar';
 import * as squatch from '@saasquatch/squatch-js' 
+import { useAuth } from '../contexts/AuthContext'
+import {auth} from '../firebase'; 
 
 export default function Referral() {
   
-  const {user, setUser} = useState()
+  const {SSQT_user, setSSQT_User} = useState()
   const {content, setContent} = useState()
+  const {fname, setFName} = useState("")
+  const {lname, setLName} = useState("")
+  const {currentUser} = useAuth(); 
+
   let initObj = {
     //The object for the user you want to upsert
     user:{
@@ -39,27 +45,17 @@ console.log()
 
 
 squatch.widgets().upsertUser(initObj).then(function(res) {
-  user = res.user
-  console.log(user)
+  setSSQT_User = res.user
 }).catch(err => console.log(err))
 
   },[])
 });
-  
 
-
-
-  // function __widget__(){
-  //   widgets().upsertUser(initObj).then(function(res){
-  //     console.log(res)
-  //     setUser(res.user)
-  //     setContent(res.widget && res.widget.content)
-  //   }).catch(err => {
-  //     alert(err)
-  //       console.log(err)
-  //   })
-  
-  // }
+function split(){
+  const [first, last] = currentUser?.displayName?.split(" ")
+  setFName(first)
+  setLName(last)
+}
  
 
   return (
@@ -71,10 +67,3 @@ squatch.widgets().upsertUser(initObj).then(function(res) {
     </div>
   )
 }
-
-// Referral.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
-//      next();
-// });

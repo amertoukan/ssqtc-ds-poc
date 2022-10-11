@@ -8,12 +8,12 @@ import { useAuth } from '../contexts/AuthContext'
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Signin() {
-    const emailRef = useRef()
-    const passwordRef = useRef()
-    const passwordConfirmRef = useRef()
-    const lnameRef = useRef()
-    const fnameRef = useRef()
-    
+    const emailRef = useRef();
+    const passwordRef = useRef();
+    const passwordConfirmRef = useRef();
+    const lnameRef = useRef();
+    const fnameRef = useRef();
+
     const { signup, currentUser } = useAuth();
     const [err, setErr] = useState("")
     const [loading, setLoading] = useState(false)
@@ -28,9 +28,8 @@ export default function Signin() {
         try {
             setErr('')
             setLoading(true)
-            await signup(emailRef.current.value, passwordRef.current.value)
+            await signup(emailRef.current.value, passwordRef.current.value, fnameRef.current.value, lnameRef.current.value)
             history("/referral")
-
         } catch (err) {
             console.log(err)
             setErr('Failed to create an account.')
