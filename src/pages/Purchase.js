@@ -4,7 +4,7 @@ import Product from '../components/product'
 export default function Store() {
   return (
     <div>
-        <Navbar signedIn={false}/>
+        <Navbar/>
         <Product 
         image = {"test1"}
         title = {"Shoes"}

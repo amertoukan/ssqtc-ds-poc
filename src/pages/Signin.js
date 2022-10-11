@@ -35,7 +35,7 @@ async function handleSubmit (e) {
 
   return (
     <div>
-        <Navbar signedIn={false} />
+        <Navbar/>
         <Card>
             <Card.Body>
                 <h2 className = "text-center mb-4">Sign In</h2>
