@@ -4,7 +4,6 @@ import { useAuth } from '../contexts/AuthContext';
 
 
 export default function Navbar({signedIn}) {
-    console.log(signedIn)
     const { currentUser } = useAuth(); 
     const div = (currentUser !== null ?   (
         <div className="nav">
