@@ -4,7 +4,7 @@ import Navbar from '../components/navbar';
 import { Form, Button, Card, Alert } from 'react-bootstrap'
 import __Form from '../components/form';
 import { useAuth } from '../contexts/AuthContext'
-
+import { addUser } from '../contexts/SquatchContext'; 
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Signin() {
@@ -19,6 +19,7 @@ export default function Signin() {
     const [loading, setLoading] = useState(false)
     const history = useNavigate();
 
+    
     async function handleSubmit(e) {
         e.preventDefault();
 
@@ -26,10 +27,18 @@ export default function Signin() {
             return setErr("Passwords do not match.")
         }
         try {
+            let email = emailRef.current.value
+            let password = passwordRef.current.value
+            let name = {firstName: fnameRef.current.value, lastName: lnameRef.current.value}
             setErr('')
             setLoading(true)
-            await signup(emailRef.current.value, passwordRef.current.value, fnameRef.current.value, lnameRef.current.value)
-            history("/referral")
+            await signup(email, password, name)
+//currentUser.uid, email, first, last, referredbyCodes
+            addUser(currentUser.uid, currentUser.uid, email, name.firstName, name.lastName, ["AMERTOUKAN242"])
+            //add SSQT tracking script 
+        //Grab RS code 
+        //Pass it through as variable to referred by Codes Arr
+            history("/home")
         } catch (err) {
             console.log(err)
             setErr('Failed to create an account.')

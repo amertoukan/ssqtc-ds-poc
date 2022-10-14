@@ -8,18 +8,24 @@ export default function Referral() {
   
   const {SSQT_user, setSSQT_User} = useState()
   const {content, setContent} = useState()
-  const {fname, setFName} = useState("")
-  const {lname, setLName} = useState("")
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
   const {currentUser} = useAuth(); 
+  function split(){
+    const [first, last] = currentUser?.displayName?.split(" ")
+    setFirstName(first)
+    setLastName(last)
+    console.log(currentUser.uid)
+  }
 
   let initObj = {
     //The object for the user you want to upsert
     user:{
-        id: 'abc_123', 
-        accountId: 'abc_123', 
-        email: 'dave@example.com', 
-        firstName: "Dave", 
-        lastName: "Doe", 
+        id: currentUser.uid, 
+        accountId: currentUser.uid, 
+        email: currentUser.email, 
+        firstName: firstName, 
+        lastName: lastName, 
         locale: 'en_US', 
         referredByCodes: ["AMERTOUKAN226"],
     },
@@ -29,6 +35,8 @@ export default function Referral() {
   useEffect(() => {
 //The object containing the init paramters for squatch.js
 
+ 
+split();
 
 
 //When squatch js is ready to use 
@@ -51,12 +59,6 @@ squatch.widgets().upsertUser(initObj).then(function(res) {
   },[])
 });
 
-function split(){
-  const [first, last] = currentUser?.displayName?.split(" ")
-  setFName(first)
-  setLName(last)
-}
- 
 
   return (
     <div>
