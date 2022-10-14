@@ -11,6 +11,8 @@ export default function Referral() {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const {currentUser} = useAuth(); 
+  const [searchParams, setSearchParams] = useSearchParams();
+   console.log(searchParams.get("code")) 
   function split(){
     const [first, last] = currentUser?.displayName?.split(" ")
     setFirstName(first)
