@@ -5,7 +5,8 @@ import { Form, Button, Card, Alert } from 'react-bootstrap'
 import __Form from '../components/form';
 import { useAuth } from '../contexts/AuthContext'
 import { addUser } from '../contexts/SquatchContext'; 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+
 
 export default function Signin() {
     const emailRef = useRef();
@@ -19,7 +20,10 @@ export default function Signin() {
     const [loading, setLoading] = useState(false)
     const history = useNavigate();
 
-    
+    const [searchParams, setSearchParams] = useSearchParams();
+    console.log(searchParams.get("code")) 
+
+
     async function handleSubmit(e) {
         e.preventDefault();
 
