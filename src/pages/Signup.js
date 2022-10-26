@@ -21,7 +21,7 @@ export default function Signin() {
     const history = useNavigate();
 
     const [searchParams, setSearchParams] = useSearchParams();
-    console.log(searchParams.get("code")) 
+    const code = searchParams.get("code")
 
 
     async function handleSubmit(e) {
@@ -38,7 +38,7 @@ export default function Signin() {
             setLoading(true)
             await signup(email, password, name)
 //currentUser.uid, email, first, last, referredbyCodes
-            addUser(currentUser.uid, currentUser.uid, email, name.firstName, name.lastName, ["AMERTOUKAN242"])
+            addUser(currentUser.uid, currentUser.uid, email, name.firstName, name.lastName, code)
             //add SSQT tracking script 
         //Grab RS code 
         //Pass it through as variable to referred by Codes Arr

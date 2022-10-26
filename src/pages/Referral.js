@@ -28,7 +28,7 @@ export default function Referral() {
         firstName: firstName, 
         lastName: lastName, 
         locale: 'en_US', 
-        referredByCodes: ["AMERTOUKAN226"],
+        referredByCodes: [],
     },
         engagementMedium: 'EMBED', 
         widgetType: 'p/demo-referral-program/w/referrerWidget', 
