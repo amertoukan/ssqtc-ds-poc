@@ -23,7 +23,17 @@ export default function Signin() {
     const [searchParams, setSearchParams] = useSearchParams();
     const code = searchParams.get("code")
 
+    async function postLeadtoSFDC(name, email){
+        const reqOptions = {
+            method: 'POST', 
+            mode: 'no-cors',
+        }
 
+        await fetch (`https://webto.salesforce.com/servlet.WebToLead?encoding=UTF-8&oid={oid}&retURL=${retURL}&first_name=${name.firstName}&last_name=${name.lastName}&email=${email}&referredByCode=${code}`, reqOptions)
+            .then(res=> res.text())
+            .then(res => console.log(res))
+            .catch(err => console.warn(err))
+}
     async function handleSubmit(e) {
         e.preventDefault();
 
@@ -38,7 +48,11 @@ export default function Signin() {
             setLoading(true)
             await signup(email, password, name)
 //currentUser.uid, email, first, last, referredbyCodes
-            addUser(currentUser.uid, currentUser.uid, email, name.firstName, name.lastName, code)
+//add user to ssqt
+            //addUser(currentUser.uid, currentUser.uid, email, name.firstName, name.lastName, code)
+            console.info(code)
+            //send to SF
+            postLeadtoSFDC(name, email)
             //add SSQT tracking script 
         //Grab RS code 
         //Pass it through as variable to referred by Codes Arr
@@ -63,18 +77,18 @@ export default function Signin() {
                     <input type="hidden" name="oid" value="00D8b0000013hDd"/>
                     <input type="hidden" name="retURL" value="https://main.d2kdzxfapya8dh.amplifyapp.com/"/>
                     <Form.Group id="firstName">
-                            <Form.Label>First Name</Form.Label>
-                            <Form.Control type="name" ref={fnameRef} required />
+                            <Form.Label for="first_name">First Name</Form.Label>
+                            <Form.Control type="name" id="first_name" name="first_name" ref={fnameRef} required />
                         </Form.Group>
 
                         <Form.Group id="lastName">
                             <Form.Label for="first name">Last Name</Form.Label>
-                            <Form.Control type="name" id="first_name" name="first_name" ref={lnameRef} required />
+                            <Form.Control type="name" id="last_name" name="last_name" ref={lnameRef} required />
                         </Form.Group>
 
                         <Form.Group id="email">
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" id="last_name" name="last_name" ref={emailRef} required />
+                            <Form.Control type="email" id="email" name="email" ref={emailRef} required />
                         </Form.Group>
 
                         <Form.Group id="password">
