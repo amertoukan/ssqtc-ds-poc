@@ -28,8 +28,9 @@ export default function Signin() {
             method: 'POST', 
             mode: 'no-cors',
         }
+        const fetchURL = code ? `https://webto.salesforce.com/servlet.WebToLead?encoding=UTF-8&oid={oid}&retURL=${retURL}&first_name=${name.firstName}&last_name=${name.lastName}&email=${email}&referredByCode=${code}`: `https://webto.salesforce.com/servlet.WebToLead?encoding=UTF-8&oid={oid}&retURL=${retURL}&first_name=${name.firstName}&last_name=${name.lastName}&email=${email}`
         const retURL="https://salesforce.d2kdzxfapya8dh.amplifyapp.com/"
-        await fetch (`https://webto.salesforce.com/servlet.WebToLead?encoding=UTF-8&oid={oid}&retURL=${retURL}&first_name=${name.firstName}&last_name=${name.lastName}&email=${email}&referredByCode=${code}`, reqOptions)
+        await fetch (`${fetchURL}`, reqOptions)
             .then(res=> res.text())
             .then(res => console.log(res))
             .catch(err => console.warn(err))
