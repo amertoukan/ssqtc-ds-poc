@@ -59,20 +59,22 @@ export default function Signin() {
                 <Card.Body>
                     <h2 className="text-center mb-4">Sign Up</h2>
                     {err && <Alert variant="danger">{err}</Alert>}
-                    <Form onSubmit={handleSubmit}>
+                    <Form onSubmit={handleSubmit} action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST">
+                    <input type="hidden" name="oid" value="00D8b0000013hDd"/>
+                    <input type="hidden" name="retURL" value="https://main.d2kdzxfapya8dh.amplifyapp.com/"/>
                     <Form.Group id="firstName">
                             <Form.Label>First Name</Form.Label>
                             <Form.Control type="name" ref={fnameRef} required />
                         </Form.Group>
 
                         <Form.Group id="lastName">
-                            <Form.Label>Last Name</Form.Label>
-                            <Form.Control type="name" ref={lnameRef} required />
+                            <Form.Label for="first name">Last Name</Form.Label>
+                            <Form.Control type="name" id="first_name" name="first_name" ref={lnameRef} required />
                         </Form.Group>
 
                         <Form.Group id="email">
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" ref={emailRef} required />
+                            <Form.Control type="email" id="last_name" name="last_name" ref={emailRef} required />
                         </Form.Group>
 
                         <Form.Group id="password">
@@ -85,6 +87,7 @@ export default function Signin() {
                             <Form.Control type="password" ref={passwordConfirmRef} required />
                         </Form.Group>
 
+                        <input type="hidden" id="00N8b00000DVVW0" name="00N8b00000DVVW0" value={code ? code : ""}/>
                         <Button className="w-100 secondary mt-4" type="submit" disabled={loading}>Sign Up</Button>
                     </Form>
                 </Card.Body>
