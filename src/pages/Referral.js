@@ -31,7 +31,7 @@ export default function Referral() {
         referredByCodes: [],
     },
         engagementMedium: 'EMBED', 
-        widgetType: 'p/demo-referral-program/w/referrerWidget', 
+        widgetType: 'p/salesforce-demo-program/w/referrerWidget', 
         };
   useEffect(() => {
 //The object containing the init paramters for squatch.js
