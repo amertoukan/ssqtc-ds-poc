@@ -88,7 +88,7 @@ export default function Signin() {
                         </Form.Group>
 
                         <input type="hidden" id="00N8b00000DVVW0" name="00N8b00000DVVW0" value={code ? code : ""}/>
-                        <Button className="w-100 secondary mt-4" type="submit" disabled={loading}>Sign Up</Button>
+                        <Button className="w-100 secondary mt-4" type="submit" name="submit" disabled={loading}>Sign Up</Button>
                     </Form>
                 </Card.Body>
             </Card>
